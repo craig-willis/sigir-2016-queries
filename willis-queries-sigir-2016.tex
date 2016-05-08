@@ -1,4 +1,4 @@
-\documentclass{sig-alternate}
+\documentclass{sig-alternate-05-2015}
 \usepackage{verbatim}
 \usepackage{array}
 \usepackage{caption}
@@ -15,16 +15,23 @@
 
 \numberofauthors{3}
 
-\author{}
-%\author{
-%Craig Willis, Miles Efron, and Garrick Sherman \\
-%     \affaddr{Graduate School of Library and Information Science}\\
-%       \affaddr{University of Illinois at Urbana-Champaign}\\
-%       \email{\{willis8, mefron, gsherma2\}@illinois.edu}
-%}
-\conferenceinfo{SIGIR}{'2016 Pisa, Italy}
+\author{
+Craig Willis, Miles Efron, and Garrick Sherman \\
+     \affaddr{Graduate School of Library and Information Science}\\
+       \affaddr{University of Illinois at Urbana-Champaign}\\
+       \email{\{willis8, mefron, gsherma2\}@illinois.edu}
+}
 
-\title{What makes a query temporally sensitive?}
+\setcopyright{rightsretained}
+\conferenceinfo{SIGIR '16,}{July 17--21, 2016, Pisa, Italy.}
+\isbn{978-1-4503-4069-4/16/07.}
+\doi{http://dx.doi.org/XXXX.XXXX}
+%Authors, replace the red X's with your assigned DOI string.
+
+\clubpenalty=10000
+\widowpenalty = 10000
+
+\title{What Makes a Query Temporally Sensitive?}
 
 \maketitle
 
@@ -54,21 +61,6 @@ There are numerous notions of temporality in information retrieval research, eac
 
 \section{Time-sensitive queries}
 
-In this section, we review examples of studies focused on \emph{temporal relevance}.  The list of topics and collections used in each of the studies are listed in Table \ref{table.topics}. 
-
-\begin{comment}
-Li and Croft's study of ``recency queries''  \cite{Li2003} was among the first to address temporal relevance. Li and Croft hypothesize that some queries are ``recency queries'' where recently published documents have a high \textit{a priori} probability of relevance.  Through the direct analysis of the temporal distribution of judged relevant documents, they classify 36 of the queries as recency queries.
-\end{comment}
-
-Jones and Diaz \cite{Jones2007} define three classes of queries based on the manual analysis of topics: temporally ambiguous (requesting multiple events),  temporally unambiguous (requesting a single event), and atemporal (having no preference). Jones and Diaz manually classify 100 TREC topics based only on their title, description, and narrative fields.  They also include 2003 Novelty track topics because they include topics classified as ``event'' or ``opinion,'' which the authors suggest correspond to the ``temporally unambiguous'' and ``atemporal'' categories, respectively.
-
-Efron and Golovchinsky \cite{Efron2011} investigate models for recency queries.  Topics are classified as ``recency'' if at least 2/3 of the relevant documents occur after the median document time and the topic has a ``bona fide temporal dimension'' based on manual review, the specific criteria for which are not specified.  The resulting classification consists of 61 recency queries.
-
-Dakka, Gravano, and Ipeirotis  \cite{Dakka2012} investigate a broad class of queries which they refer to as ``time-sensitive.'' They hypothesize that there are queries for which more relevant documents are found at specific points in time, not just recently. They manually examine the title, description and narrative of each topic and identify queries associated with specific news events.  If the topic information is insufficient to make a decision, they analyze the distribution of judged-relevant documents. The resulting classification consists of 86 temporally sensitive queries. 
-
-Finally, Peetz, Meij, and de Rijke \cite{Peetz2013a} investigate the effect of temporal bursts in estimating query models. Building on the earlier studies, they evaluate their models using the previous manual classifications as well as a new collection based on TREC Blog06. As in the previous studies, the authors manually construct a subset of ``temporal'' queries based on topic descriptions and relevant document distributions. No specific criteria for classification are given.
-
-
 \begin{table}[!ht]
 \scriptsize
 \begin{tabular}{| p{1.5cm} | p{3.1cm}  | p{2.5cm} |} \hline
@@ -84,6 +76,19 @@ MB1-110 \newline(Microblog) & Tweets 2011 (Jan 24, 2011 - Feb 8th, 2011) & Efron
 \label{table.topics}
 \end{table}
 
+In this section, we review examples of studies focused on \emph{temporal relevance}.  The list of topics and collections used in each of the studies are listed in Table \ref{table.topics}. 
+
+\begin{comment}
+Li and Croft's study of ``recency queries''  \cite{Li2003} was among the first to address temporal relevance. Li and Croft hypothesize that some queries are ``recency queries'' where recently published documents have a high \textit{a priori} probability of relevance.  Through the direct analysis of the temporal distribution of judged relevant documents, they classify 36 of the queries as recency queries.
+\end{comment}
+
+Jones and Diaz \cite{Jones2007} define three classes of queries based on the manual analysis of topics: temporally ambiguous (requesting multiple events),  temporally unambiguous (requesting a single event), and atemporal (having no preference). Jones and Diaz manually classify 100 TREC topics based only on their title, description, and narrative fields.  They also include 2003 Novelty track topics because they include topics classified as ``event'' or ``opinion,'' which the authors suggest correspond to the ``temporally unambiguous'' and ``atemporal'' categories, respectively.
+
+Efron and Golovchinsky \cite{Efron2011} investigate models for recency queries.  Topics are classified as ``recency'' if at least 2/3 of the relevant documents occur after the median document time and the topic has a ``bona fide temporal dimension'' based on manual review, the specific criteria for which are not specified.  The resulting classification consists of 61 recency queries.
+
+Dakka, Gravano, and Ipeirotis  \cite{Dakka2012} investigate a broad class of queries which they refer to as ``time-sensitive.'' They hypothesize that there are queries for which more relevant documents are found at specific points in time, not just recently. They manually examine the title, description and narrative of each topic and identify queries associated with specific news events.  If the topic information is insufficient to make a decision, they analyze the distribution of judged-relevant documents. The resulting classification consists of 86 temporally sensitive queries. 
+
+Finally, Peetz, Meij, and de Rijke \cite{Peetz2013a} investigate the effect of temporal bursts in estimating query models. Building on the earlier studies, they evaluate their models using the previous manual classifications as well as a new collection based on TREC Blog06. As in the previous studies, the authors manually construct a subset of ``temporal'' queries based on topic descriptions and relevant document distributions. No specific criteria for classification are given.
 
 \section{What makes a query temporally sensitive?}
 
@@ -206,8 +211,6 @@ Our qualitative analysis suggests that three broad classes of features bear on q
 
 \subsection{Code distributions}
 
-Figure \ref{fig.codedist} summarizes the percent of topics in each test collection with each code assigned. We can see that the Novelty and Microblog  collections have a higher percentage of specific events than the Blog and ad-hoc collections. The ad-hoc collections have a higher number of generic events, which supports the findings of Jones and Diaz \cite{Jones2007}. The Blog, Novelty, and Microblog test collections each have larger numbers of named entities in the topic titles and descriptions.
-
 \begin{figure}[!ht]
 \centering
 \begin{subfigure}{.25\textwidth}
@@ -222,6 +225,8 @@ Figure \ref{fig.codedist} summarizes the percent of topics in each test collecti
 \vspace{-.75em}
 \label{fig.codedist}
 \end{figure}
+
+Figure \ref{fig.codedist} summarizes the percent of topics in each test collection with each code assigned. We can see that the Novelty and Microblog  collections have a higher percentage of specific events than the Blog and ad-hoc collections. The ad-hoc collections have a higher number of generic events, which supports the findings of Jones and Diaz \cite{Jones2007}. The Blog, Novelty, and Microblog test collections each have larger numbers of named entities in the topic titles and descriptions.
 
 \begin{comment}
 \begin{table*}
